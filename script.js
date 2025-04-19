@@ -71,10 +71,10 @@ function handleSubcategory(sub) {
 
 function showForm() {
   const fields = [
-    { id: "message", label: "ご相談内容", type: "textarea" },
-    { id: "company", label: "会社名", type: "text" },
-    { id: "name", label: "お名前", type: "text" },
-    { id: "email", label: "メールアドレス", type: "email" }
+    { id: "message", label: "ご相談内容*", type: "textarea" },
+    { id: "company", label: "会社名*", type: "text" },
+    { id: "name", label: "お名前*", type: "text" },
+    { id: "email", label: "メールアドレス*", type: "email" }
   ];
 
   fields.forEach(f => {
@@ -99,6 +99,15 @@ function showForm() {
 }
 
 function submitForm() {
+  const requiredFields = ["message", "company", "name", "email"];
+  for (let id of requiredFields) {
+    const val = document.getElementById(id).value.trim();
+    if (!val) {
+      alert("すべての項目を入力してください。");
+      return;
+    }
+  }
+
   const payload = {
     category: selectedCategory,
     subcategory: selectedSubcategory,
