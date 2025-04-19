@@ -1,152 +1,52 @@
 body {
+  font-family: sans-serif;
+  background: #f2f2f2;
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(to bottom, #cdefff, #f0f9ff);
-}
-
-.chat-launcher {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #0078d4;
-  color: white;
-  border: none;
-  padding: 14px 20px;
-  border-radius: 30px;
-  font-size: 15px;
-  cursor: pointer;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  z-index: 1000;
+  padding: 0;
 }
 
 .chat-box {
-  display: none;
-  flex-direction: column;
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 360px;
-  max-width: 90%;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  width: 100%;
+  max-width: 420px;
+  margin: 30px auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   overflow: hidden;
-  z-index: 999;
 }
 
 .chat-body {
   padding: 16px;
-  font-size: 14px;
-  color: #333;
-  max-height: 500px;
+  max-height: 600px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: linear-gradient(to bottom, #e0f7ff, #ffffff);
 }
 
-.message {
-  max-width: 80%;
-  padding: 10px 14px;
-  border-radius: 16px;
-  line-height: 1.5;
-  display: inline-block;
-}
-
-.bot {
-  align-self: flex-start;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  color: #333;
-  position: relative;
-  padding-left: 50px;
-  background-image: url('tanaka-photo.png');
-  background-size: 32px 32px;
-  background-repeat: no-repeat;
-  background-position: 10px center;
-}
-
-.user {
-  align-self: flex-end;
-  background-color: #dcf8c6;
-  color: #000;
+.message.bot {
+  background: #eef6ff;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
 }
 
 .category-button, .subcategory-button, .submit-button, .restart-button {
-  display: inline-block;
-  margin-top: 6px;
-  padding: 10px;
-  background-color: #0078d4;
-  color: white;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.category-button:hover, .subcategory-button:hover, .submit-button:hover, .restart-button:hover {
-  background-color: #005ea2;
-}
-
-input, textarea {
-  width: 100%;
-  margin-top: 6px;
-  padding: 8px;
-  font-size: 14px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-
-textarea#message {
-  height: 4em;
-  resize: vertical;
-}
-
-textarea.form-input {
-  height: 4em;
-  resize: vertical;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* 最終調整 */
-textarea.form-input {
-  height: 4em;
-  resize: vertical;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: inherit;
-  font-size: 1em;
-  outline: none;
-}
-
-/* 最終完全統一スタイル */
-textarea.form-input,
-input.form-input {
   display: block;
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1em;
-  font-family: inherit;
-  box-sizing: border-box;
-  line-height: 1.4;
-  background-color: #fff;
+  margin: 6px 0;
+  font-size: 14px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
-textarea.form-input {
-  height: auto;
-  min-height: 4em;
-  resize: none;
-  overflow: hidden;
+.form-input {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }

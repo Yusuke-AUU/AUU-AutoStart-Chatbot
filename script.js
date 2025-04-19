@@ -1,4 +1,3 @@
-
 function scrollToBottom() {
   chatBody.scrollTop = chatBody.scrollHeight;
 }
@@ -6,13 +5,7 @@ const chatBox = document.getElementById("chatBox");
 const chatBody = document.getElementById("chatBody");
 
 const categories = {
-  "M&A・事業承継": ["後継者不在で悩んでいる", "会社の売却を検討している", "買収を考えている", "第三者への承継を相談したい", "その他のM&A・事業承継に関すること"],
-  "補助金・助成金": ["新規事業や設備投資の予定がある", "どの補助金・助成金が使えるか知りたい", "専門家に申請手続きをサポートしてほしい", "事業計画書の作成を相談したい", "その他の補助金・助成金に関すること"],
-  "資金調達・財務・税務": ["融資や資金繰りで悩んでいる", "節税や税務対策について相談したい", "財務改善や分析をしたい", "出資や投資の相談をしたい", "その他の資金調達・財務・税務に関すること"],
-  "採用・組織・労務": ["人材の採用で困っている", "定着率や離職率を改善したい", "組織体制を見直したい", "労務管理の相談がしたい", "その他の採用・組織・労務に関すること"],
-  "新規事業・パートナー": ["新しい事業の立ち上げを考えている", "パートナー・協業先を探している", "補助金や設備投資減税について詳しくしりたい", "専門家を紹介してほしい", "その他の新規事業・パートナーに関すること"],
-  "コスト削減・DX・AI活用": ["業務の効率化を進めたい", "DXやITツール導入の相談をしたい", "AIの導入事例を知りたい", "コスト削減の方法を見直したい", "その他のDX・AI活用・コスト削減に関すること"],
-  "その他のご相談": ["経営全般の相談をしたい", "何から相談してよいか分からない", "自社の現状に合う支援を知りたい", "外部専門家の紹介を受けたい", "その他のご相談"]
+  "M&A・事業承継": ["後継者不在で悩んでいる", "会社の売却を検討している", "買収を考えている", "第三者への承継を相談したい", "その他のM&A・事業承継に関すること"]
 };
 
 let selectedCategory = "";
@@ -46,7 +39,7 @@ function typeMessage(text, callback) {
       clearInterval(interval);
       if (callback) callback();
     }
-  }, 60);
+  }, 30);
 }
 
 function handleCategory(cat) {
@@ -82,12 +75,6 @@ function showForm() {
     input.id = f.id;
     input.className = "form-input";
     input.placeholder = f.label;
-    if (f.id === "message") {
-      input.addEventListener("input", () => {
-        input.style.height = "auto";
-        input.style.height = input.scrollHeight + "px";
-      });
-    }
     chatBody.appendChild(input);
   });
 
@@ -99,8 +86,18 @@ function showForm() {
 }
 
 function submitForm() {
+  // 入力チェック
+  const requiredFields = ["message", "company", "name", "email"];
+  for (let id of requiredFields) {
+    const val = document.getElementById(id).value.trim();
+    if (!val) {
+      alert("すべての項目を入力してください。");
+      return;
+    }
+  }
+
   const payload = {
-    category: selectedCategory,
+  category: selectedCategory,
     subcategory: selectedSubcategory,
     message: document.getElementById("message").value,
     company: document.getElementById("company").value,
@@ -108,7 +105,7 @@ function submitForm() {
     email: document.getElementById("email").value
   };
 
-fetch("https://script.google.com/macros/s/AKfycbxN8FTZ7xNGWazi-lAZIF8nKoU2_E2VjUS-_HasDFxJy_5rewyQb1quqgyhNaTKHDSD/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbxN8FTZ7xNGWazi-lAZIF8nKoU2_E2VjUS-_HasDFxJy_5rewyQb1quqgyhNaTKHDSD/exec", {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/json" },
@@ -124,5 +121,5 @@ fetch("https://script.google.com/macros/s/AKfycbxN8FTZ7xNGWazi-lAZIF8nKoU2_E2VjU
   });
 }
 
-
-window.onload = startChat;
+// 🔽 自動スタート
+window.onload = () => startChat();
