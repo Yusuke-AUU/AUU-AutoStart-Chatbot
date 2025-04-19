@@ -51,7 +51,7 @@ function typeMessage(text, callback) {
 
 function handleCategory(cat) {
   selectedCategory = cat;
-  typeMessage("ありがとうございます！もう少し詳しく教えてください😊", () => {
+  typeMessage("ありがとうございます！もう少し詳しく教えてください😊 ↓", () => {
     categories[cat].forEach(sub => {
       const btn = document.createElement("button");
       btn.className = "subcategory-button";
@@ -64,7 +64,7 @@ function handleCategory(cat) {
 
 function handleSubcategory(sub) {
   selectedSubcategory = sub;
-  typeMessage("承知しました！お役に立てるかもしれません！具体的なご相談内容の入力をお願いします！", () => {
+  typeMessage("承知しました！お役に立てるかもしれません！具体的なご相談内容の入力をお願いします！ ↓", () => {
     showForm();
   });
 }
