@@ -39,7 +39,7 @@ function typeMessage(text, callback) {
       clearInterval(interval);
       if (callback) callback();
     }
-  }, 30);
+  }, 60);
 }
 
 function handleCategory(cat) {
@@ -64,10 +64,10 @@ function handleSubcategory(sub) {
 
 function showForm() {
   const fields = [
-    { id: "message", label: "ご相談内容", type: "textarea" },
-    { id: "company", label: "会社名", type: "text" },
-    { id: "name", label: "お名前", type: "text" },
-    { id: "email", label: "メールアドレス", type: "email" }
+    { id: "message", label: "ご相談内容*", type: "textarea" },
+    { id: "company", label: "会社名*", type: "text" },
+    { id: "name", label: "お名前*", type: "text" },
+    { id: "email", label: "メールアドレス*", type: "email" }
   ];
 
   fields.forEach(f => {
@@ -86,7 +86,6 @@ function showForm() {
 }
 
 function submitForm() {
-  // 入力チェック
   const requiredFields = ["message", "company", "name", "email"];
   for (let id of requiredFields) {
     const val = document.getElementById(id).value.trim();
@@ -97,7 +96,7 @@ function submitForm() {
   }
 
   const payload = {
-  category: selectedCategory,
+    category: selectedCategory,
     subcategory: selectedSubcategory,
     message: document.getElementById("message").value,
     company: document.getElementById("company").value,
