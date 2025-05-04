@@ -51,7 +51,7 @@ function typeMessage(text, callback) {
       clearInterval(interval);
       if (callback) callback();
     }
-  }, 60);
+  }, 100);
 }
 
 function handleCategory(cat) {
