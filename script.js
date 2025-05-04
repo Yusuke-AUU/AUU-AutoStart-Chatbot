@@ -21,9 +21,9 @@ let selectedSubcategory = "";
 function startChat() {
   chatBox.style.display = "flex";
   chatBody.innerHTML = "";
-  typeMessage("こんにちは！\n課題解決サポートチャットです 😊", () => {
-    typeMessage("このチャットでは、あなたの「経営に関する悩み・気になること」を整理し、\n例えば専門家のご紹介など最適な支援をご案内できます！", () => {
-      typeMessage("✔ ご相談＆専門家の紹介は完全無料です！\n\n✔ チャットボット×人（チームAUU）で最適な対応をします！\n\n✔ 話すだけで、課題の整理ができます！", () => {
+  typeMessage("こんにちは！<br>課題解決サポートチャットです 😊", () => {
+    typeMessage("このチャットでは、あなたの「経営に関する悩み・気になること」を整理し、<br>例えば専門家のご紹介など最適な支援をご案内できます！", () => {
+      typeMessage("✔ ご相談＆専門家の紹介は完全無料です！<br>✔ チャットボット×人（チームAUU）で最適な対応をします！<br>✔ 話すだけで、課題の整理ができます！", () => {
         typeMessage("まずは以下から、気になる分野を選んでみてください 😊", () => {
           Object.keys(categories).forEach(cat => {
             const btn = document.createElement("button");
@@ -38,19 +38,13 @@ function startChat() {
   });
 }
 
-function typeMessage(text, callback) {
+function typeMessage(html, callback) {
   const msg = document.createElement("div");
   msg.className = "message bot";
+  msg.innerHTML = html;
   chatBody.appendChild(msg);
-  let i = 0;
-  const interval = setInterval(() => {
-    msg.textContent += text[i++];
-    scrollToBottom();
-    if (i >= text.length) {
-      clearInterval(interval);
-      if (callback) callback();
-    }
-  }, 60);
+  scrollToBottom();
+  if (callback) callback();
 }
 
 function handleCategory(cat) {
@@ -128,7 +122,7 @@ function submitForm() {
     body: JSON.stringify(payload)
   });
 
-  typeMessage("ありがとうございます！内容を確認し、担当よりご連絡いたします。\n私たちは、貴社の益々の発展を応援しております！\n引き続きよろしくお願いいたします。", () => {
+  typeMessage("ありがとうございます！内容を確認し、担当よりご連絡いたします。<br>私たちは、貴社の益々の発展を応援しております！<br>引き続きよろしくお願いいたします。", () => {
     const restart = document.createElement("button");
     restart.textContent = "🔁 もう一度相談する";
     restart.className = "restart-button";
